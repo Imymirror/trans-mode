@@ -48,7 +48,7 @@ if source text language code equals ~trans-target~ , use ~trans-second-target~ a
 1. mark or copy a single word
 2. call ~trans-toggle-verbose~ trun on verbose, translate(call  ~trans-region-or-clipboard-popup~  or  ~trans-input-popup~  ), see result
 3. call ~trans-toggle-verbose~ trun off verbose, translate(call  ~trans-region-or-clipboard-popup~  or  ~trans-input-popup~ ), see result
-*** how to ~trans-install-target~
+*** how to use ~trans-install-target~
 1. use ~trans-install-target~ generate language-specific functions
    #+begin_src emacs-lisp
      (trans-install-target "ja") ;; ==> generate two new functions : trans-input-ja , trans-input-ja-popup
@@ -63,3 +63,6 @@ if source text language code equals ~trans-target~ , use ~trans-second-target~ a
 - ~trans-toggle-verbose~  :  default using -brief (-b) option, by this function you can switch  between bref/detail status. It is useful when translate a single word.
 - ~trans-switch-to-buffer~  : switch trans-mode buffer. show all translate message
 - ~trans-install-target~ : generate language-specific functions.
+** keymap
+ ~trans-mode~ binding keymap with prefix ~C-c C-t~, maybe you want to remap your own key。
+ [[file:assets/keymap.png]]

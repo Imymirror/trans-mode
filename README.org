@@ -62,3 +62,4 @@ if source text language code equals ~trans-target~ , use ~trans-second-target~ a
 - ~trans-input-popup~  : translate input text. save to king ring. Compare to ~tans-input~, it will additionally pop up a window to show translate text.
 - ~trans-toggle-verbose~  :  default using -brief (-b) option, by this function you can switch  between bref/detail status. It is useful when translate a single word.
 - ~trans-switch-to-buffer~  : switch trans-mode buffer. show all translate message
+- ~trans-install-target~ : generate language-specific functions.

@@ -1,7 +1,6 @@
 
 * trans-mode
 The ~trans-mode~ is a translator on Emacs using [[https://github.com/soimort/translate-shell][translate-shell]].
-
 ** install
 trans-mode depends on [[https://github.com/soimort/translate-shell][translate-shell]] that you need to install first. for example :
 #+begin_src shell
@@ -12,33 +11,25 @@ trans-mode depends on [[https://github.com/soimort/translate-shell][translate-sh
 
 Here is an example configuration using ~use-package~:
 #+begin_src emacs-lisp
-(use-package trans-mode
-  :straight
-  (:host github :repo "Imymirror/trans-mode")
-  :custom
-  (trans-target "zh" "first target language is zh")
-  (trans-second-target "en" "if source text language code equals first target, use the second target as an alternative.")
-  :config
-  (trans-install-target "ja") ;; ==> auto generate two new functions : trans-input-ja , trans-input-ja-popup
-  )
-
+  (use-package trans-mode
+    :straight
+    (:host github :repo "Imymirror/trans-mode")
+    :custom
+    (trans-target "zh" "first target language is zh")
+    (trans-second-target "en" "if source text language code equals first target, use the second target as an alternative.")
+    :config
+    (trans-install-target "ja") ;; ==> auto generate two new functions : trans-input-ja , trans-input-ja-popup
+    )
 #+end_src
-Google Translate can identify the language of the source text automatically，so we only need to configure the language of target text using ~trans-target~ and ~trans-second-target~ (see [[https://www.soimort.org/translate-shell/#code-list][language code list]]).
-if source text language code equals ~trans-target~ , use ~trans-second-target~ as target.
+Google Translate can identify the language of the  =source text=  automatically，so we only need to configure the language of =target text= using ~trans-target~ and ~trans-second-target~ (see [[https://www.soimort.org/translate-shell/#code-list][language code list]]).
 
+if source text language code equals ~trans-target~ , use ~trans-second-target~ as target code , because translate ~zh:zh~ is useless.
 
 ~trans-install-target~ is used to generate language-specific functions. for example:
 #+begin_src emacs-lisp
   (trans-install-target "ja") ;; ==> generate two new functions : trans-input-ja , trans-input-ja-popup
   (trans-install-target "fr") ;; ==> generate two new functions : trans-input-fr , trans-input-fr-popup
 #+end_src
-** api
-  - trans-region-or-clipboard : if region active true, translate mark region, otherwise translate clipboard text.
-  - trans-region-or-clipboard-popup : Compare to ~trans-region-or-clipboard~,  it will additionally pop up a window to show translate text.
-  - trans-input : translate input text. save to king ring.
-  - trans-input-popup : translate input text. save to king ring. Compare to ~tans-input~, it will additionally pop up a window to show translate text.
-  - trans-toggle-verbose :  default using -brief (-b) option, by this function you can switch  between bref/detail status. It is useful when translate a single word.
-  - trans-switch-to-buffer : switch trans-mode buffer. show all translate message
 ** usage
 *** mark region and translate
 [[file:assets/mark-traslate-yank.gif]]
@@ -47,20 +38,27 @@ if source text language code equals ~trans-target~ , use ~trans-second-target~ a
 - ~yank(C-y)~ to paste translate string
 *** copy to clipboard and translate
 [[file:assets/clipboard-yank.gif]]
-- ~C-c~ copy selected text to clipboard
+- ~C-c~ copy text to clipboard
 - call ~trans-region-or-clipboard~ to translate
 - ~yank(C-y)~ to paste translate string
 *** input text and traslate
 - call ~trans-input~ or ~trans-input-popup~ , type text that you want to translate
 - ~yank(C-y)~ to paste translate string
 *** how to use  ~trans-toggle-verbose~ 
-1. mark or copy a word
-2. call ~trans-toggle-verbose~ trun on verbose, translate( trans-region-or-clipboard-popup or trans-input-popup ), see result
-3. call ~trans-toggle-verbose~ trun off verbose, translate( trans-region-or-clipboard-popup or trans-input-popup ), see result
+1. mark or copy a single word
+2. call ~trans-toggle-verbose~ trun on verbose, translate(call  ~trans-region-or-clipboard-popup~  or  ~trans-input-popup~  ), see result
+3. call ~trans-toggle-verbose~ trun off verbose, translate(call  ~trans-region-or-clipboard-popup~  or  ~trans-input-popup~ ), see result
 *** how to ~trans-install-target~
 1. use ~trans-install-target~ generate language-specific functions
    #+begin_src emacs-lisp
-  (trans-install-target "ja") ;; ==> generate two new functions : trans-input-ja , trans-input-ja-popup
-  (trans-install-target "fr") ;; ==> generate two new functions : trans-input-fr , trans-input-fr-popup
+     (trans-install-target "ja") ;; ==> generate two new functions : trans-input-ja , trans-input-ja-popup
+     (trans-install-target "fr") ;; ==> generate two new functions : trans-input-fr , trans-input-fr-popup
    #+end_src
 2. call ~trans-input-ja-popup~ , type "I love 'Emacs'"
+** api
+- ~trans-region-or-clipboard~  : if region active true, translate mark region, otherwise translate clipboard text.
+- ~trans-region-or-clipboard-popup~  : Compare to ~trans-region-or-clipboard~,  it will additionally pop up a window to show translate text.
+- ~trans-input~  : translate input text. save to king ring.
+- ~trans-input-popup~  : translate input text. save to king ring. Compare to ~tans-input~, it will additionally pop up a window to show translate text.
+- ~trans-toggle-verbose~  :  default using -brief (-b) option, by this function you can switch  between bref/detail status. It is useful when translate a single word.
+- ~trans-switch-to-buffer~  : switch trans-mode buffer. show all translate message

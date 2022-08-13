@@ -23,7 +23,15 @@ Here is an example configuration using ~use-package~:
   )
 
 #+end_src
+Google Translate can identify the language of the source text automatically，so we only need to configure the language of target text using ~trans-target~ and ~trans-second-target~ (see [[https://www.soimort.org/translate-shell/#code-list][language code list]]).
+if source text language code equals ~trans-target~ , use ~trans-second-target~ as target.
 
+
+~trans-install-target~ is used to generate language-specific functions. for example:
+#+begin_src emacs-lisp
+  (trans-install-target "ja") ;; ==> generate two new functions : trans-input-ja , trans-input-ja-popup
+  (trans-install-target "fr") ;; ==> generate two new functions : trans-input-fr , trans-input-fr-popup
+#+end_src
 ** api
   - trans-region-or-clipboard : if region active true, translate mark region, otherwise translate clipboard text.
   - trans-region-or-clipboard-popup : Compare to ~trans-region-or-clipboard~,  it will additionally pop up a window to show translate text.
@@ -35,5 +43,24 @@ Here is an example configuration using ~use-package~:
 *** mark region and translate
 [[file:assets/mark-traslate-yank.gif]]
 - ~mark~  region
-- call trans-region-or-clipboard-popup/trans-region-or-clipboard to  ~traslate~ .
--  ~yank(C-y)~ to paste translate string
+- call  ~trans-region-or-clipboard-popup~  to traslate 
+- ~yank(C-y)~ to paste translate string
+*** copy to clipboard and translate
+[[file:assets/clipboard-yank.gif]]
+- ~C-c~ copy selected text to clipboard
+- call ~trans-region-or-clipboard~ to translate
+- ~yank(C-y)~ to paste translate string
+*** input text and traslate
+- call ~trans-input~ or ~trans-input-popup~ , type text that you want to translate
+- ~yank(C-y)~ to paste translate string
+*** how to use  ~trans-toggle-verbose~ 
+1. mark or copy a word
+2. call ~trans-toggle-verbose~ trun on verbose, translate( trans-region-or-clipboard-popup or trans-input-popup ), see result
+3. call ~trans-toggle-verbose~ trun off verbose, translate( trans-region-or-clipboard-popup or trans-input-popup ), see result
+*** how to ~trans-install-target~
+1. use ~trans-install-target~ generate language-specific functions
+   #+begin_src emacs-lisp
+  (trans-install-target "ja") ;; ==> generate two new functions : trans-input-ja , trans-input-ja-popup
+  (trans-install-target "fr") ;; ==> generate two new functions : trans-input-fr , trans-input-fr-popup
+   #+end_src
+2. call ~trans-input-ja-popup~ , type "I love 'Emacs'"

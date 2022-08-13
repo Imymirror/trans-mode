@@ -33,7 +33,7 @@ Here is an example configuration using ~use-package~:
   - trans-switch-to-buffer : switch trans-mode buffer. show all translate message
 ** usage
 *** mark region and translate
-[[file:assets/mark-traslate-yank.mov]]
+[[file:assets/mark-traslate-yank.gif]]
 - ~mark~  region
 - call trans-region-or-clipboard-popup/trans-region-or-clipboard to  ~traslate~ .
 -  ~yank(C-y)~ to paste translate string

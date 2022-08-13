@@ -192,7 +192,7 @@
   
   (trans-eval-string (concat "(trans-install-target-popup-function " "\"" target  "\" "  ")"))
   (trans-eval-string (concat "(trans-install-target-function " "\"" target  "\" "  ")"))
-(message (format "generate two new functions : %s, %s" (concat "trans-input-" target) (concat "trans-input-" target "popup"))))
+(message (format "generate two new functions : %s, %s" (concat "trans-input-" target) (concat "trans-input-" target "-popup"))))
 
 
 (define-minor-mode trans-mode

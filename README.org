@@ -2,4 +2,38 @@
 * trans-mode
 The ~trans-mode~ is a translator on Emacs using [[https://github.com/soimort/translate-shell][translate-shell]].
 
+** install
+trans-mode depends on [[https://github.com/soimort/translate-shell][translate-shell]] that you need to install first. for example :
+#+begin_src shell
+  wget git.io/trans
+  chmod +x ./trans
+  #    mv ./trans /usr/local/bin/trans  # on MacOS
+#+end_src
 
+Here is an example configuration using ~use-package~:
+#+begin_src emacs-lisp
+(use-package trans-mode
+  :straight
+  (:host github :repo "Imymirror/trans-mode")
+  :custom
+  (trans-target "zh" "first target language is zh")
+  (trans-second-target "en" "if source text language code equals first target, use the second target as an alternative.")
+  :config
+  (trans-install-target "ja") ;; ==> auto generate two new functions : trans-input-ja , trans-input-ja-popup
+  )
+
+#+end_src
+
+** api
+  - trans-region-or-clipboard : if region active true, translate mark region, otherwise translate clipboard text.
+  - trans-region-or-clipboard-popup : Compare to ~trans-region-or-clipboard~,  it will additionally pop up a window to show translate text.
+  - trans-input : translate input text. save to king ring.
+  - trans-input-popup : translate input text. save to king ring. Compare to ~tans-input~, it will additionally pop up a window to show translate text.
+  - trans-toggle-verbose :  default using -brief (-b) option, by this function you can switch  between bref/detail status. It is useful when translate a single word.
+  - trans-switch-to-buffer : switch trans-mode buffer. show all translate message
+** usage
+*** mark region and translate
+[[file:assets/mark-traslate-yank.mov]]
+- ~mark~  region
+- call trans-region-or-clipboard-popup/trans-region-or-clipboard to  ~traslate~ .
+-  ~yank(C-y)~ to paste translate string

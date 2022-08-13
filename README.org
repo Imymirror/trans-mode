@@ -58,8 +58,8 @@ if source text language code equals ~trans-target~ , use ~trans-second-target~ a
 ** api
 - ~trans-region-or-clipboard~  : if region active true, translate mark region, otherwise translate clipboard text.
 - ~trans-region-or-clipboard-popup~  : Compare to ~trans-region-or-clipboard~,  it will additionally pop up a window to show translate text.
-- ~trans-input~  : translate input text. save to king ring.
-- ~trans-input-popup~  : translate input text. save to king ring. Compare to ~tans-input~, it will additionally pop up a window to show translate text.
+- ~trans-input~  : translate input text. save to kill ring.
+- ~trans-input-popup~  : translate input text. save to kill ring. Compare to ~tans-input~, it will additionally pop up a window to show translate text.
 - ~trans-toggle-verbose~  :  default using -brief (-b) option, by this function you can switch  between bref/detail status. It is useful when translate a single word.
 - ~trans-switch-to-buffer~  : switch trans-mode buffer. show all translate message
 - ~trans-install-target~ : generate language-specific functions.

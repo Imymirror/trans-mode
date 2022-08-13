@@ -1,0 +1,5 @@
+
+* trans-mode
+The ~trans-mode~ is a translator on Emacs using [[https://github.com/soimort/translate-shell][translate-shell]].
+
+

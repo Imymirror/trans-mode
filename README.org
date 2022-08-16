@@ -30,6 +30,12 @@ if source text language code equals ~trans-target~ , use ~trans-second-target~ a
   (trans-install-target "ja") ;; ==> generate two new functions : trans-input-ja , trans-input-ja-popup
   (trans-install-target "fr") ;; ==> generate two new functions : trans-input-fr , trans-input-fr-popup
 #+end_src
+** support features
+1. translate text from mark region
+2. translate text from clipboard
+3. translate text from input text
+4. translate text by turning on/off verbose.
+5. generate language-specific translate functions
 ** usage
 *** mark region and translate
 [[file:assets/mark-traslate-yank.gif]]
@@ -44,10 +50,9 @@ if source text language code equals ~trans-target~ , use ~trans-second-target~ a
 *** input text and traslate
 - call ~trans-input~ or ~trans-input-popup~ , type text that you want to translate
 - ~yank(C-y)~ to paste translate string
-*** how to use  ~trans-toggle-verbose~ 
-1. mark or copy a single word
-2. call ~trans-toggle-verbose~ trun on verbose, translate(call  ~trans-region-or-clipboard-popup~  or  ~trans-input-popup~  ), see result
-3. call ~trans-toggle-verbose~ trun off verbose, translate(call  ~trans-region-or-clipboard-popup~  or  ~trans-input-popup~ ), see result
+*** how to use  ~trans-toggle-verbose~ : switch between brief and detail mode 
+1. call ~trans-toggle-verbose~ trun on verbose, translate(call  ~trans-region-or-clipboard-popup~  or  ~trans-input-popup~  ), see result
+2. call ~trans-toggle-verbose~ trun off verbose, translate(call  ~trans-region-or-clipboard-popup~  or  ~trans-input-popup~ ), see result
 *** how to use ~trans-install-target~
 1. use ~trans-install-target~ generate language-specific functions
    #+begin_src emacs-lisp
